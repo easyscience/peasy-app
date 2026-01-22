@@ -1,6 +1,3 @@
-
-
-
 <p>
   <picture>
     <!-- light mode logo -->
