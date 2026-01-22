@@ -18,8 +18,9 @@ cross-platform desktop application.
 
 Here, we focus on the graphical user interface (GUI). For the Python
 library, please see the corresponding
-[library resources](https://github.com/easyscience/peasy-app).## Useful
-Links
+[library resources](https://github.com/easyscience/peasy-app).
+
+## Useful Links
 
 - 📖 [Documentation](https://easyscience.github.io/peasy-app/latest)
 - 🚀

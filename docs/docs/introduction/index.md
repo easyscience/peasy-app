@@ -15,8 +15,10 @@ cross-platform desktop application.
 
 Here, we focus on the graphical user interface (GUI). For the Python
 library, please see the corresponding
-[library resources](https://github.com/easyscience/peasy-app).**EasyPeasy**
-is developed using the [EasyScience framework](https://easyscience.org).
+[library resources](https://easyscience.github.io/peasy-app).
+
+**EasyPeasy** is developed using the
+[EasyScience framework](https://easyscience.org).
 
 ## License
 
@@ -42,7 +44,7 @@ Zenodo, each with a version-specific Digital Object Identifier (DOI).
 
 Citation details in various styles (e.g., APA, MLA) and formats (e.g.,
 BibTeX, JSON) are available on the
-[Zenodo archive page](https://doi.org/).
+[Zenodo archive page](https://doi.org/10.5281/zenodo.18163581).
 
 ## Contributing
 
