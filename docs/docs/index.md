@@ -1,6 +1,6 @@
 ![](assets/images/logo_dark.svg#gh-dark-mode-only)![](assets/images/logo_light.svg#gh-light-mode-only)
 
-# Imaginary data analysis library
+# Imaginary data analysis application
 
 Here is a brief overview of the main documentation sections:
 
