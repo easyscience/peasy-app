@@ -50,7 +50,6 @@ easypeasy = { path = ".", editable = true, extras = ['dev'] }
 
 # Specific features: Set specific Python versions
 
-
 [feature.py-max.dependencies]
 python = '3.13.*'
 

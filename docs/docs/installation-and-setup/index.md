@@ -161,8 +161,8 @@ simply delete and recreate the environment.
 EasyPeasy is available on **PyPI (Python Package Index)** and can be
 installed using `pip`.
 
-We recommend installing the latest release of EasyPeasy with
-the `visualization` extras, which include optional dependencies used for
+We recommend installing the latest release of EasyPeasy with the
+`visualization` extras, which include optional dependencies used for
 simplified visualization of charts and tables. This can be especially
 useful for running the Jupyter Notebook examples. To do so, use the
 following command:
