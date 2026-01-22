@@ -14,18 +14,16 @@
 **EasyPeasy** is available both as a Python library and as a
 cross-platform desktop application.
 
-Here, we focus on the Python library. For the graphical user interface
-(GUI), please see the corresponding [GUI resources](https://github.com/easyscience/peasy-app).
+Here, we focus on the graphical user interface (GUI). For the Python
+library, please see the corresponding [library resources](https://github.com/easyscience/peasy-app).## Useful Links
 
-## Useful Links
-
-- 📖 [Documentation](https://easyscience.github.io/peasy-lib/latest)
-- 🚀 [Getting Started](https://easyscience.github.io/peasy-lib/latest/introduction)
-- 🧪 [Tutorials](https://easyscience.github.io/peasy-lib/latest/tutorials)
-- 💬 [Get in Touch](https://easyscience.github.io/peasy-lib/latest/introduction/#get-in-touch)
-- 🧾 [Citation](https://easyscience.github.io/peasy-lib/latest/introduction/#citation)
-- 🤝 [Contributing](https://easyscience.github.io/peasy-lib/latest/introduction/#contributing)
-- 🐞 [Issue Tracker](https://github.com/easyscience/peasy-lib/issues)
-- 💡 [Discussions](https://github.com/easyscience/peasy-lib/discussions)
-- 🧑‍💻 [Source Code](https://github.com/easyscience/peasy-lib)
-- ⚖️ [License](https://raw.githubusercontent.com/easyscience/peasy-lib/refs/heads/master/LICENSE)
+- 📖 [Documentation](https://easyscience.github.io/peasy-app/latest)
+- 🚀 [Getting Started](https://easyscience.github.io/peasy-app/latest/introduction)
+- 🧪 [Tutorials](https://easyscience.github.io/peasy-app/latest/tutorials)
+- 💬 [Get in Touch](https://easyscience.github.io/peasy-app/latest/introduction/#get-in-touch)
+- 🧾 [Citation](https://easyscience.github.io/peasy-app/latest/introduction/#citation)
+- 🤝 [Contributing](https://easyscience.github.io/peasy-app/latest/introduction/#contributing)
+- 🐞 [Issue Tracker](https://github.com/easyscience/peasy-app/issues)
+- 💡 [Discussions](https://github.com/easyscience/peasy-app/discussions)
+- 🧑‍💻 [Source Code](https://github.com/easyscience/peasy-app)
+- ⚖️ [License](https://raw.githubusercontent.com/easyscience/peasy-app/refs/heads/master/LICENSE)
