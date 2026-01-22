@@ -96,8 +96,7 @@ jobs:
           for py_ver in $PY_VERSIONS; do
             echo
             echo "🔹🔸🔹🔸🔹 Python: $py_ver 🔹🔸🔹🔸🔹"
-
-            env="py-$(echo $py_ver | tr -d .)-env" # Converts 3.11 -> py-311-env
+            env="default" # Single environment for the app
 
             echo "Running tests in environment: $env"
             pixi run --environment $env unit-tests
@@ -111,158 +110,10 @@ jobs:
           for py_ver in $PY_VERSIONS; do
             echo
             echo "🔹🔸🔹🔸🔹 Python: $py_ver 🔹🔸🔹🔸🔹"
-
-            env="py-$(echo $py_ver | tr -d .)-env" # Converts 3.11 -> py-311-env
+            env="default" # Single environment for the app
 
             echo "Running tests in environment: $env"
             pixi run --environment $env integration-tests ${{ needs.env-prepare.outputs.pytest-marks }}
-          done
-
-      # Delete all local tags when not on a tagged commit to force versioningit
-      # to fall back to the configured default-tag, which is '999.0.0' in our case.
-      # This is needed for testing the package in the next job, as its version
-      # must be higher than the PyPI version for pip to prefer the local version.
-      - name: Force using versioningit default tag (non tagged release)
-        if: startsWith(github.ref , 'refs/tags/v') != true
-        run: git tag --delete $(git tag)
-
-      - name: Build package wheels for all Python versions
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          for py_ver in $PY_VERSIONS; do
-            echo
-            echo "🔹🔸🔹🔸🔹 Python: $py_ver 🔹🔸🔹🔸🔹"
-
-            env="py-$(echo $py_ver | tr -d .)-env" # Converts 3.11 -> py-311-env
-
-            echo "Building wheel in environment: $env"
-            pixi run --environment $env dist-build
-
-            echo "Moving built wheel to dist/py$py_ver/"
-            pixi run mkdir -p dist/py$py_ver
-            pixi run mv dist/*.whl dist/py$py_ver/
-          done
-
-      - name: Remove Python cache files before uploading
-        shell: bash
-        run: pixi run clean-pycache
-
-      # More than one file/dir need to be specified in 'path', to preserve the
-      # structure of the dist/ directory, not only its contents.
-      - name: Upload package (incl. extras) for next job
-        uses: ./.github/actions/upload-artifact
-        with:
-          name: easypeasy_${{ matrix.os }}_${{ runner.arch }}
-          path: dist/
-
-  # Job 3: Test the package
-  package-test:
-    needs: source-test # depend on previous job
-
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-24.04, macos-14, windows-2022]
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Download package (incl. extras) from previous job
-        uses: ./.github/actions/download-artifact
-        with:
-          # name and path should be taken from the upload step of the previous job
-          name: easypeasy_${{ matrix.os }}_${{ runner.arch }}
-          path: dist/
-
-      - name: Set up pixi
-        uses: ./.github/actions/setup-pixi
-        with:
-          environments: ''
-          activate-environment: ''
-          run-install: false
-          frozen: false
-
-      - name: Install easypeasy from the built wheel
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          for py_ver in $PY_VERSIONS; do
-            echo
-            echo "🔹🔸🔹🔸🔹 Python: $py_ver 🔹🔸🔹🔸🔹"
-
-            echo "Initializing pixi project"
-            pixi init easypeasy_py$py_ver
-            cd easypeasy_py$py_ver
-
-            echo "Adding Python $py_ver"
-            pixi add "python=$py_ver"
-
-            echo "Adding Conda dependencies"
-            pixi add gsl
-
-            #echo "Adding PyPI dependencies"
-            #pixi add --pypi pytest pytest-xdist
-
-            echo "Looking for wheel in ../dist/py$py_ver/"
-            ls -l "../dist/py$py_ver/"
-
-            whl_path=(../dist/"py$py_ver"/*.whl)
-            if [[ ! -f "${whl_path[0]}" ]]; then
-              echo "❌ No wheel found in ../dist/py$py_ver/"
-              exit 1
-            fi
-
-            whl_url="file://$(python -c 'import os,sys; print(os.path.abspath(sys.argv[1]))' "${whl_path[0]}")"
-
-            echo "Adding easypeasy from: $whl_url"
-            pixi add --pypi "easypeasy[dev] @ ${whl_url}"
-
-            echo "Exiting pixi project directory"
-            cd ..
-          done
-
-      - name: Run unit tests
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          for py_ver in $PY_VERSIONS; do
-            echo
-            echo "🔹🔸🔹🔸🔹 Python: $py_ver 🔹🔸🔹🔸🔹"
-
-            echo "Entering pixi project directory easypeasy_py$py_ver"
-            cd easypeasy_py$py_ver
-
-            echo "Running tests"
-            pixi run python -m pytest ../tests/unit/ --color=yes -v
-
-            echo "Exiting pixi project directory"
-            cd ..
-          done
-
-      - name: Run integration tests ${{ needs.env-prepare.outputs.pytest-marks }}
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          for py_ver in $PY_VERSIONS; do
-            echo
-            echo "🔹🔸🔹🔸🔹 Python: $py_ver 🔹🔸🔹🔸🔹"
-
-            echo "Entering pixi project directory easypeasy_py$py_ver"
-            cd easypeasy_py$py_ver
-
-            echo "Running tests"
-            pixi run python -m pytest ../tests/integration/ --color=yes -n auto -v ${{ needs.env-prepare.outputs.pytest-marks }}
-
-            echo "Exiting pixi project directory"
-            cd ..
           done
 
   # Job 4: Build and publish dashboard (reusable workflow)
