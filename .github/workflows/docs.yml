@@ -101,6 +101,12 @@ jobs:
       - name: Set up pixi
         uses: ./.github/actions/setup-pixi
 
+      # Build the static files for the documentation site for local inspection
+      # Input: docs/ directory containing the Markdown files
+      # Output: site/ directory containing the generated HTML files
+      - name: Build site for local check
+        run: pixi run docs-build-local
+
       # Upload the static files from the site/ directory to be used for
       # local check
       - name: Upload built site as artifact
