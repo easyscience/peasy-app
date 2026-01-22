@@ -101,32 +101,6 @@ jobs:
       - name: Set up pixi
         uses: ./.github/actions/setup-pixi
 
-      # Pre-import the main package to exclude info messages from the docs
-      # E.g., Matplotlib may print messages to stdout/stderr when first
-      # imported. This step allows to avoid "Matplotlib is building the font
-      # cache" messages during notebook execution.
-      - name: Pre-build site step
-        run: pixi run python -c "import easypeasy"
-
-      # Convert Python scripts in the docs/docs/tutorials/ directory to Jupyter
-      # notebooks.
-      # This step also strips any existing output from the notebooks and
-      # prepares them for documentation.
-      - name: Convert tutorial scripts to notebooks
-        run: pixi run notebook-prepare
-
-      # Execute all Jupyter notebooks to generate output cells (plots, tables, etc.).
-      # Uses multiple cores for parallel execution to speed up the process.
-      - name: Run notebooks
-        # if: false # Temporarily disabled to speed up the docs build
-        run: pixi run notebook-exec
-
-      # Build the static files for the documentation site for local inspection
-      # Input: docs/ directory containing the Markdown files
-      # Output: site/ directory containing the generated HTML files
-      - name: Build site for local check
-        run: pixi run docs-build-local
-
       # Upload the static files from the site/ directory to be used for
       # local check
       - name: Upload built site as artifact
