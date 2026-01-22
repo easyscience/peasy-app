@@ -39,14 +39,12 @@ permissions:
 # Allow only one concurrent workflow, skipping runs queued between the run
 # in-progress and latest queued. And cancel in-progress runs.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: {% raw %}${{ github.workflow }}{% endraw %}-{% raw %}${{ github.event.pull_request.number || github.ref }}{% endraw %}
   cancel-in-progress: true
 
 # Set the environment variables to be used in all jobs defined in this workflow
 env:
-  CI_BRANCH: ${{ github.head_ref || github.ref_name }}
-  PY_VERSIONS: 'default'
-  PIXI_ENVS: 'default'
+  CI_BRANCH: {% raw %}${{ github.head_ref || github.ref_name }}{% endraw %}
 
 jobs:
   # Job 1: Set up environment variables
@@ -54,7 +52,7 @@ jobs:
     runs-on: [ubuntu-latest]
 
     outputs:
-      pytest-marks: ${{ steps.set-mark.outputs.pytest_marks }}
+      pytest-marks: {% raw %}${{ steps.set-mark.outputs.pytest_marks }}{% endraw %}
 
     steps:
       # Determine if integration tests should be run fully or only the fast ones
@@ -62,7 +60,7 @@ jobs:
       - name: Set mark for integration tests
         id: set-mark
         run: |
-          if [[ "${{ env.CI_BRANCH }}" == "master" || "${{ env.CI_BRANCH }}" == "develop" ]]; then
+          if [[ "{% raw %}${{ env.CI_BRANCH }}{% endraw %}" == "master" || "{% raw %}${{ env.CI_BRANCH }}{% endraw %}" == "develop" ]]; then
             echo "pytest_marks=" >> $GITHUB_OUTPUT
           else
             echo "pytest_marks=-m fast" >> $GITHUB_OUTPUT
@@ -77,7 +75,7 @@ jobs:
       matrix:
         os: [ubuntu-24.04, macos-14, windows-2022]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: {% raw %}${{ matrix.os }}{% endraw %}
 
     steps:
       - name: Checkout repository
@@ -86,38 +84,18 @@ jobs:
       - name: Set up pixi
         uses: ./.github/actions/setup-pixi
         with:
-          environments: ${{ env.PIXI_ENVS }}
+          environments: {% raw %}${{ env.PIXI_ENVS }}{% endraw %}
 
       - name: Run unit tests
         shell: bash
-        run: |
-          set -euo pipefail
+        run: pixi run unit-tests
 
-          for py_ver in $PY_VERSIONS; do
-            echo
-            echo "🔹🔸🔹🔸🔹 Python: $py_ver 🔹🔸🔹🔸🔹"
-            env="default" # Single environment for the app
-
-            echo "Running tests in environment: $env"
-            pixi run --environment $env unit-tests
-          done
-
-      - name: Run integration tests ${{ needs.env-prepare.outputs.pytest-marks }}
+      - name: Run integration tests {% raw %}${{ needs.env-prepare.outputs.pytest-marks }}{% endraw %}
         shell: bash
-        run: |
-          set -euo pipefail
-
-          for py_ver in $PY_VERSIONS; do
-            echo
-            echo "🔹🔸🔹🔸🔹 Python: $py_ver 🔹🔸🔹🔸🔹"
-            env="default" # Single environment for the app
-
-            echo "Running tests in environment: $env"
-            pixi run --environment $env integration-tests ${{ needs.env-prepare.outputs.pytest-marks }}
-          done
+        run: pixi run integration-tests {% raw %}${{ needs.env-prepare.outputs.pytest-marks }}{% endraw %}
 
   # Job 4: Build and publish dashboard (reusable workflow)
   run-reusable-workflows:
-    needs: package-test # depend on previous job
+    needs: source-test # depend on previous job
     uses: ./.github/workflows/dashboard.yml
     secrets: inherit
