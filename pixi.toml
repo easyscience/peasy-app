@@ -46,7 +46,7 @@ gsl = '*'    # GNU Scientific Library; required for pdffit2.
 
 [pypi-dependencies] # == [feature.default.pypi-dependencies]
 pip = '*'                                                         # Native package installer
-easypeasy-app = { path = ".", editable = true, extras = ['dev'] }
+easypeasy_app = { path = ".", editable = true, extras = ['dev'] }
 
 # Specific features: Set specific Python versions
 
@@ -126,9 +126,9 @@ raw-metrics = 'radon raw -s src/'
 raw-metrics-json = 'radon raw -s -j src/'
 
 # 📊 Coverage
-unit-tests-coverage = 'pixi run unit-tests --cov=src/easypeasy-app --cov-report=term-missing'
-integration-tests-coverage = 'pixi run integration-tests --cov=src/easypeasy-app --cov-report=term-missing'
-docstring-coverage = 'interrogate -c pyproject.toml src/easypeasy-app'
+unit-tests-coverage = 'pixi run unit-tests --cov=src/easypeasy_app --cov-report=term-missing'
+integration-tests-coverage = 'pixi run integration-tests --cov=src/easypeasy_app --cov-report=term-missing'
+docstring-coverage = 'interrogate -c pyproject.toml src/easypeasy_app'
 
 cov = { depends-on = [
   'docstring-coverage',
@@ -199,4 +199,4 @@ post-install = { depends-on = [
 ] }
 
 # 🔗 Main Package Shortcut
-easypeasy-app = 'python -m easypeasy-app'
+easypeasy_app = 'python -m easypeasy_app'

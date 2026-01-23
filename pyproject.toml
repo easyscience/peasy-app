@@ -3,7 +3,7 @@
 ###############################
 
 [project]
-name = 'easypeasy-app'
+name = 'easypeasy_app'
 dynamic = ['version'] # Use versioningit to manage the version
 description = 'Imaginary data analysis'
 authors = [{ name = 'EasyPeasy contributors' }]
@@ -89,7 +89,7 @@ requires = ['hatchling', 'versioningit']
 #############################
 
 [tool.hatch.build.targets.wheel]
-packages = ['src/easypeasy-app']
+packages = ['src/easypeasy_app']
 
 [tool.hatch.metadata]
 allow-direct-references = true
