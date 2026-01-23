@@ -1372,8 +1372,8 @@ packages:
   requires_python: '>=3.5'
 - pypi: ./
   name: easypeasy-app
-  version: 0.0.1+devdirty1
-  sha256: 6cbb325892de827641243c3a64a4779f3961df4b95f51bcbafd86078ebb42081
+  version: 0.0.1+devdirty2
+  sha256: 5af3dbbd9e22f7201626946a3334494a55589f82683fd9409623aae64960f360
   requires_dist:
   - darkdetect
   - jupyterlab

@@ -6,19 +6,16 @@ icon: material/information-slab-circle
 
 ## Description
 
-**EasyPeasy** is a scientific software for performing imaginary calculations based on a theoretical model and refining its parameters against experimental data.
-
+**EasyPeasy** is a scientific software for performing imaginary
+calculations based on a theoretical model and refining its parameters
+against experimental data.
 
 **EasyPeasy** is available both as a Python library and as a
 cross-platform desktop application.
 
-
 Here, we focus on the graphical user interface (GUI). For the Python
-library, please see the corresponding [library resources](https://easyscience.github.io/peasy-lib).
-
-
-
-
+library, please see the corresponding
+[library resources](https://easyscience.github.io/peasy-lib).
 
 **EasyPeasy** is developed using the
 [EasyScience framework](https://easyscience.org).
@@ -39,11 +36,11 @@ the
 
 ## Citation
 
-If you use **EasyPeasy** application in your work,
-please cite the specific version you used.
+If you use **EasyPeasy** application in your work, please cite the
+specific version you used.
 
-All official releases of the **EasyPeasy** application are archived
-on Zenodo, each with a version-specific Digital Object Identifier (DOI).
+All official releases of the **EasyPeasy** application are archived on
+Zenodo, each with a version-specific Digital Object Identifier (DOI).
 
 Citation details in various styles (e.g., APA, MLA) and formats (e.g.,
 BibTeX, JSON) are available on the
@@ -51,9 +48,9 @@ BibTeX, JSON) are available on the
 
 ## Contributing
 
-We welcome contributions from the community! **EasyPeasy** is
-intended to be a community-driven, open-source project supported by a
-diverse group of contributors.
+We welcome contributions from the community! **EasyPeasy** is intended
+to be a community-driven, open-source project supported by a diverse
+group of contributors.
 
 The project is maintained by the
 [European Spallation Source (ESS)](https://ess.eu).

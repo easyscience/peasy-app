@@ -45,16 +45,13 @@ nodejs = '*' # Required for Prettier (non-Python formatting)
 gsl = '*'    # GNU Scientific Library; required for pdffit2.
 
 [pypi-dependencies] # == [feature.default.pypi-dependencies]
-pip = '*'                                                     # Native package installer
-easypeasy_app = { path = ".", editable = true, extras = ['dev'] }
+pip = '*'                                                         # Native package installer
+easypeasy-app = { path = ".", editable = true, extras = ['dev'] }
 
 # Specific features: Set specific Python versions
 
-
 [feature.py-max.dependencies]
 python = '3.13.*'
-
-
 
 ##############
 # ENVIRONMENTS
@@ -133,9 +130,9 @@ raw-metrics = 'radon raw -s src/'
 raw-metrics-json = 'radon raw -s -j src/'
 
 # 📊 Coverage
-unit-tests-coverage = 'pixi run unit-tests --cov=src/easypeasy_app --cov-report=term-missing'
-integration-tests-coverage = 'pixi run integration-tests --cov=src/easypeasy_app --cov-report=term-missing'
-docstring-coverage = 'interrogate -c pyproject.toml src/easypeasy_app'
+unit-tests-coverage = 'pixi run unit-tests --cov=src/easypeasy-app --cov-report=term-missing'
+integration-tests-coverage = 'pixi run integration-tests --cov=src/easypeasy-app --cov-report=term-missing'
+docstring-coverage = 'interrogate -c pyproject.toml src/easypeasy-app'
 
 cov = { depends-on = [
   'docstring-coverage',
@@ -170,8 +167,8 @@ docs-update-assets = 'pixi run python tools/update_docs_assets.py'
 
 # 📦 Template Management Tasks
 copier-copy = "pixi run copier copy gh:easyscience/templates-app . --data-file ../peasy/.copier-answers.yml --data template_type=app"
-copier-recopy = "pixi run copier recopy --answers-file .copier-answers.yml --data-file ../peasy/.copier-answers.yml --data template_type=app"
-copier-update = "pixi run copier update --answers-file .copier-answers.yml --data-file ../peasy/.copier-answers.yaml --data template_type=app"
+copier-recopy = "pixi run copier recopy --data-file ../peasy/.copier-answers.yml --data template_type=app"
+copier-update = "pixi run copier update --data-file ../peasy/.copier-answers.yml --data template_type=app"
 
 # 🚀 Development & Build Tasks
 default-build = 'python -m build'
@@ -183,15 +180,13 @@ prettier-install = 'npm install --no-save --no-audit --no-fund prettier prettier
 clean-pycache = "find . -type d -name '__pycache__' -prune -exec rm -rf '{}' +"
 spdx-update = 'python tools/update_spdx.py'
 
-pre-commit-setup = { cmd = [
-  "pre-commit clean",
-  "pre-commit uninstall --hook-type pre-commit --hook-type pre-push",
-  "pre-commit install --hook-type pre-commit --hook-type pre-push --overwrite",
-] }
-pre-commit-update = 'pre-commit autoupdate'
-pre-commit-uninstall = { cmd = [
-  "pre-commit clean",
-  "pre-commit uninstall --hook-type pre-commit --hook-type pre-push",
+pre-commit-clean = 'pre-commit clean'
+pre-commit-install = 'pre-commit install --hook-type pre-commit --hook-type pre-push --overwrite'
+pre-commit-uninstall = 'pre-commit uninstall --hook-type pre-commit --hook-type pre-push'
+pre-commit-setup = { depends-on = [
+  'pre-commit-clean',
+  'pre-commit-uninstall',
+  'pre-commit-install',
 ] }
 
 post-install = { depends-on = [
@@ -201,4 +196,4 @@ post-install = { depends-on = [
 ] }
 
 # 🔗 Main Package Shortcut
-easypeasy_app = 'python -m easypeasy_app'
+easypeasy-app = 'python -m easypeasy-app'
