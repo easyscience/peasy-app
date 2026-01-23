@@ -91,12 +91,6 @@ nonpy-format-check-modified = "pixi run nonpy-format-check-pre $(git diff --diff
 nonpy-format-check = "pixi run nonpy-format-check-pre ."
 notebook-format-check = 'nbqa ruff docs/docs/tutorials/'
 docs-format-check = 'docformatter src/ docs/docs/tutorials/ --check'
-# Run like a real commit: staged files only (almost)
-pre-commit-check = 'pre-commit run --hook-stage pre-commit'
-# CI check: lint/format everything
-pre-commit-check-all = 'pre-commit run --all-files --hook-stage pre-commit'
-# Pre-push check: lint/format everything
-pre-push-check = 'pre-commit run --all-files --hook-stage pre-push'
 
 check = { depends-on = [
   'docs-format-check',
@@ -113,12 +107,14 @@ nonpy-format-fix = 'pixi run nonpy-format-check --write'
 nonpy-format-fix-modified = "pixi run nonpy-format-check-modified --write"
 notebook-format-fix = 'pixi run notebook-format-check --fix'
 docs-format-fix = 'docformatter src/ docs/docs/tutorials/ --in-place'
+success-message-fix = 'echo "✅ All code auto-formatting steps have been applied."'
 
 fix = { depends-on = [
   'py-format-fix',
   'docs-format-fix',
   'py-lint-fix',
   'nonpy-format-fix',
+  'success-message-fix',
 ] }
 
 # 🧮 Code Complexity
@@ -179,6 +175,13 @@ prettier-install = 'npm install --no-save --no-audit --no-fund prettier prettier
 
 clean-pycache = "find . -type d -name '__pycache__' -prune -exec rm -rf '{}' +"
 spdx-update = 'python tools/update_spdx.py'
+
+# Run like a real commit: staged files only (almost)
+pre-commit-check = 'pre-commit run --hook-stage pre-commit'
+# CI check: lint/format everything
+pre-commit-check-all = 'pre-commit run --all-files --hook-stage pre-commit'
+# Pre-push check: lint/format everything
+pre-push-check = 'pre-commit run --all-files --hook-stage pre-push'
 
 pre-commit-clean = 'pre-commit clean'
 pre-commit-install = 'pre-commit install --hook-type pre-commit --hook-type pre-push --overwrite'
