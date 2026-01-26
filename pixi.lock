@@ -1378,7 +1378,7 @@ packages:
   requires_python: '>=3.11'
 - pypi: ./
   name: easypeasy-app
-  version: 0.0.1+devdirty8
+  version: 0.0.1+devdirty10
   sha256: a7069c8ca62cb9d78cbe4e278aa8b3bea29cfb98703d77c04b274f7374a67744
   requires_dist:
   - darkdetect
