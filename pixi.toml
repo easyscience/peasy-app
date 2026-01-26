@@ -199,4 +199,4 @@ post-install = { depends-on = [
 ] }
 
 # 🔗 Main Package Shortcut
-easypeasy_app = 'python -m easypeasy_app'
+easypeasy_app = 'python src/easypeasy_app/main.py'
