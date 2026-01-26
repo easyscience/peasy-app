@@ -143,7 +143,7 @@ notebook-tweak = 'python tools/tweak_notebooks.py tutorials/'
 notebook-exec = 'python -m pytest --nbmake docs/docs/tutorials/ --nbmake-timeout=600 --overwrite --color=yes -n auto -v'
 
 notebook-prepare = { depends-on = [
-  'notebook-convert',
+  ###'notebook-convert',
   'notebook-strip',
   ###'notebook-tweak',
 ] }
@@ -162,7 +162,7 @@ docs-set-default-pre = 'mike set-default -F docs/mkdocs.yml --push --branch gh-p
 docs-update-assets = 'pixi run python tools/update_docs_assets.py'
 
 # 📦 Template Management Tasks
-copier-copy = "pixi run copier copy gh:easyscience/templates-app . --data-file ../peasy/.copier-answers.yml --data template_type=app"
+copier-copy = "pixi run copier copy gh:easyscience/templates . --data-file ../peasy/.copier-answers.yml --data template_type=app"
 copier-recopy = "pixi run copier recopy --data-file ../peasy/.copier-answers.yml --data template_type=app"
 copier-update = "pixi run copier update --data-file ../peasy/.copier-answers.yml --data template_type=app"
 
