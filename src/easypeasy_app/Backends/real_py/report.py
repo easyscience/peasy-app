@@ -1,6 +1,6 @@
-# SPDX-FileCopyrightText: 2024 EasyApp contributors
+# SPDX-FileCopyrightText: 2021-2026 EasyPeasy contributors <https://github.com/easyscience>
 # SPDX-License-Identifier: BSD-3-Clause
-# © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
+
 
 from PySide6.QtCore import QObject, Signal, Property
 

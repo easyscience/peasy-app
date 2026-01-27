@@ -1,6 +1,6 @@
-# SPDX-FileCopyrightText: 2024 EasyApp contributors
+# SPDX-FileCopyrightText: 2021-2026 EasyPeasy contributors <https://github.com/easyscience>
 # SPDX-License-Identifier: BSD-3-Clause
-# © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
+
 
 import time
 from pathlib import Path
@@ -11,48 +11,44 @@ from .logic.helpers import IO
 from .logic.helpers import DottyDict
 
 
-_INFO = {
-    'description': '',
-    'location': str(Path.home()),
-    'creationDate': ''
-}
+_INFO = {'description': '', 'location': str(Path.home()), 'creationDate': ''}
 
 _EXAMPLES = [
     {
         'description': 'neutrons, powder, constant wavelength, HRPT@PSI',
         'name': 'La0.5Ba0.5CoO3 (HRPT)',
-        'path': ':/Examples/La0.5Ba0.5CoO3_HRPT@PSI/project.cif'
+        'path': ':/Examples/La0.5Ba0.5CoO3_HRPT@PSI/project.cif',
     },
     {
         'description': 'neutrons, powder, constant wavelength, HRPT@PSI',
         'name': 'La0.5Ba0.5CoO3-Raw (HRPT)',
-        'path': ':/Examples/La0.5Ba0.5CoO3-Raw_HRPT@PSI/project.cif'
+        'path': ':/Examples/La0.5Ba0.5CoO3-Raw_HRPT@PSI/project.cif',
     },
     {
         'description': 'neutrons, powder, constant wavelength, HRPT@PSI, 2 phases',
         'name': 'La0.5Ba0.5CoO3-Mult-Phases (HRPT)',
-        'path': ':/Examples/La0.5Ba0.5CoO3-Mult-Phases_HRPT@PSI/project.cif'
+        'path': ':/Examples/La0.5Ba0.5CoO3-Mult-Phases_HRPT@PSI/project.cif',
     },
     {
         'description': 'neutrons, powder, constant wavelength, D20@ILL',
         'name': 'Co2SiO4 (D20)',
-        'path': ':/Examples/Co2SiO4_D20@ILL/project.cif'
+        'path': ':/Examples/Co2SiO4_D20@ILL/project.cif',
     },
     {
         'description': 'neutrons, powder, constant wavelength, G41@LLB',
         'name': 'Dy3Al5O12 (G41)',
-        'path': ':/Examples/Dy3Al5O12_G41@LLB/project.cif'
+        'path': ':/Examples/Dy3Al5O12_G41@LLB/project.cif',
     },
     {
         'description': 'neutrons, powder, constant wavelength, D1A@ILL',
         'name': 'PbSO4 (D1A)',
-        'path': ':/Examples/PbSO4_D1A@ILL/project.cif'
+        'path': ':/Examples/PbSO4_D1A@ILL/project.cif',
     },
     {
         'description': 'neutrons, powder, constant wavelength, 3T2@LLB',
         'name': 'LaMnO3 (3T2)',
-        'path': ':/Examples/LaMnO3_3T2@LLB/project.cif'
-    }
+        'path': ':/Examples/LaMnO3_3T2@LLB/project.cif',
+    },
 ]
 
 
@@ -94,7 +90,9 @@ class Project(QObject):
     def name(self, new_value):
         if self._name == new_value:
             return
-        console.debug(IO.format_msg('main', f"Changing project name from '{self.name}' to '{new_value}'"))
+        console.debug(
+            IO.format_msg('main', f"Changing project name from '{self.name}' to '{new_value}'")
+        )
         self._name = new_value
         self.nameChanged.emit()
 
@@ -106,7 +104,6 @@ class Project(QObject):
     def examples(self):
         return self._examples
 
-
     ##########################
     # GUI accessible functions
     ##########################
@@ -114,7 +111,7 @@ class Project(QObject):
     @Slot()
     def create(self):
         console.debug(IO.format_msg('main', f"Creating project '{self.name}'"))
-        self.info['creationDate'] = time.strftime("%d %b %Y %H:%M", time.localtime())
+        self.info['creationDate'] = time.strftime('%d %b %Y %H:%M', time.localtime())
         self.infoChanged.emit()
         self.created = True
 
@@ -126,6 +123,11 @@ class Project(QObject):
     def editInfo(self, path, new_value):
         if DottyDict.get(self._info, path) == new_value:
             return
-        console.debug(IO.format_msg('main', f"Changing project info.{path} from '{DottyDict.get(self._info, path)}' to '{new_value}'"))
+        console.debug(
+            IO.format_msg(
+                'main',
+                f"Changing project info.{path} from '{DottyDict.get(self._info, path)}' to '{new_value}'",
+            )
+        )
         DottyDict.set(self._info, path, new_value)
         self.infoChanged.emit()

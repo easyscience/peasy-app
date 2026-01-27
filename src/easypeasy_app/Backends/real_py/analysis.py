@@ -1,6 +1,6 @@
-# SPDX-FileCopyrightText: 2024 EasyApp contributors
+# SPDX-FileCopyrightText: 2021-2026 EasyPeasy contributors <https://github.com/easyscience>
 # SPDX-License-Identifier: BSD-3-Clause
-# © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
+
 
 import numpy as np
 from PySide6.QtCore import QObject, Signal, Slot, Property, QPointF
@@ -9,25 +9,24 @@ from EasyApp.Logic.Logging import console
 
 
 class Analysis(QObject):
-    """
-    Backend object that generates synthetic diffraction-like data
-    and exposes it to QML as a list of QPointF values plus axis ranges.
+    """Backend object that generates synthetic diffraction-like data and
+    exposes it to QML as a list of QPointF values plus axis ranges.
     """
 
     # Signals
     dataSizeChanged = Signal()
-    dataPointsChanged = Signal("QVariantList")   # Emitted with list<QPointF>
-    axesRangesChanged = Signal()                 # Emitted when range dict updates
+    dataPointsChanged = Signal('QVariantList')  # Emitted with list<QPointF>
+    axesRangesChanged = Signal()  # Emitted when range dict updates
 
     def __init__(self):
         super().__init__()
 
         self._dataSize = 10000
         self._axesRanges = {
-            "xmin": 0.0,
-            "xmax": 180.0,
-            "ymin": 0.0,
-            "ymax": 100.0,
+            'xmin': 0.0,
+            'xmax': 180.0,
+            'ymin': 0.0,
+            'ymax': 100.0,
         }
 
     # ------------------------------------------------------------------
@@ -47,7 +46,7 @@ class Analysis(QObject):
         self._dataSize = value
         self.dataSizeChanged.emit()
 
-    @Property("QVariantMap", notify=axesRangesChanged)
+    @Property('QVariantMap', notify=axesRangesChanged)
     def axesRanges(self):
         """
         Axis ranges used by the graph:
@@ -63,13 +62,13 @@ class Analysis(QObject):
     @Slot()
     def generateData(self):
         """Generate new synthetic data and notify QML."""
-        console.debug(f"* Generating {self.dataSize} data points...")
+        console.debug(f'* Generating {self.dataSize} data points...')
         x, y = self._generate_data(n_points=self.dataSize)
-        console.debug("  Data generation completed.")
+        console.debug('  Data generation completed.')
 
-        console.debug(f"* Converting and sending {self.dataSize} data points to series...")
+        console.debug(f'* Converting and sending {self.dataSize} data points to series...')
         self.dataPointsChanged.emit(self._ndarrays_to_qpoints(x, y))
-        console.debug("  Data update signal emitted.")
+        console.debug('  Data update signal emitted.')
 
         self._updateAxesRanges(x.min(), x.max(), y.min(), y.max())
 
@@ -80,16 +79,16 @@ class Analysis(QObject):
     def _updateAxesRanges(self, xmin, xmax, ymin, ymax):
         """Store axis ranges and notify QML."""
         vmargin = 10.0
-        self._axesRanges["xmin"] = float(xmin)
-        self._axesRanges["xmax"] = float(xmax)
-        self._axesRanges["ymin"] = max(0, float(ymin) - vmargin)
-        self._axesRanges["ymax"] = float(ymax) + vmargin
+        self._axesRanges['xmin'] = float(xmin)
+        self._axesRanges['xmax'] = float(xmax)
+        self._axesRanges['ymin'] = max(0, float(ymin) - vmargin)
+        self._axesRanges['ymax'] = float(ymax) + vmargin
         self.axesRangesChanged.emit()
 
     @staticmethod
     def _ndarrays_to_qpoints(x: np.ndarray, y: np.ndarray):
-        """
-        Convert NumPy X/Y arrays to list[QPointF].
+        """Convert NumPy X/Y arrays to list[QPointF].
+
         Uses memoryview to avoid Python float conversions inside numpy.
         """
         mvx = memoryview(x)
@@ -106,8 +105,9 @@ class Analysis(QObject):
         noise_level=1.0,
         background=20.0,
     ):
-        """
-        Generate synthetic diffraction-like pattern from sum of random Gaussians.
+        """Generate synthetic diffraction-like pattern from sum of
+        random Gaussians.
+
         Returns (x, y) NumPy arrays.
         """
         # Sample x grid
@@ -128,6 +128,5 @@ class Analysis(QObject):
 
         # Background
         y += background
-
 
         return x, y
