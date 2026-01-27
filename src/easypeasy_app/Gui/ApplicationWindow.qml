@@ -71,6 +71,20 @@ EaComponents.ApplicationWindow {
         },
         // Project page
 
+        // Sample model page
+        EaElements.AppBarTabButton {
+            id: sampleModelButton
+            enabled: false
+            fontIcon: 'puzzle-piece'
+            text: qsTr('Sample model')
+            ToolTip.text: qsTr('Sample model definition page')
+            Component.onCompleted: {
+                Globals.References.applicationWindow.appBarCentralTabs.sampleModelButton = sampleModelButton
+            }
+        },
+        // Sample model page
+
+
         // Analysis page
         EaElements.AppBarTabButton {
             id: analysisButton
@@ -106,6 +120,7 @@ EaComponents.ApplicationWindow {
     contentArea: [
         Loader { source: 'Pages/Home/Content.qml' },
         Loader { source: 'Pages/Project/Layout.qml' },
+        Loader { source: 'Pages/SampleModel/Layout.qml' },
         Loader { source: 'Pages/Analysis/Layout.qml' },
         Loader { source: 'Pages/Report/Layout.qml' }
     ]

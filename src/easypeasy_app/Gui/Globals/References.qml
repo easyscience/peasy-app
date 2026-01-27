@@ -17,6 +17,7 @@ QtObject {
         'appBarCentralTabs': {
             'homeButton': null,
             'projectButton': null,
+            'sampleModelButton': null,
             'analysisButton': null,
             'summaryButton': null,
         }
