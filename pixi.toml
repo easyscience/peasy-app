@@ -17,6 +17,7 @@ PYTHONIOENCODING = "utf-8"
 # Unix/macOS
 [target.unix.activation.env]
 PYTHONPATH = "${PIXI_PROJECT_ROOT}/src${PYTHONPATH:+:${PYTHONPATH}}"
+PATH = "$HOME/Qt/6.9.1/macos/bin${PATH:+:${PATH}}"
 
 # Windows
 [target.win.activation.env]
@@ -167,6 +168,8 @@ copier-recopy = "pixi run copier recopy --data-file ../peasy/.copier-answers.yml
 copier-update = "pixi run copier update --data-file ../peasy/.copier-answers.yml --data template_type=app"
 
 # 🚀 Development & Build Tasks
+freeze = 'pixi run pyinstaller src/easypeasy_app/main.py --name=easypeasy --log-level WARN --noconfirm --clean --windowed --onedir --add-data=src/easypeasy_app:. --collect-all EasyApp'
+
 default-build = 'python -m build'
 dist-build = 'python -m build --wheel --outdir dist'
 
@@ -199,4 +202,5 @@ post-install = { depends-on = [
 ] }
 
 # 🔗 Main Package Shortcut
-easypeasy = 'python src/easypeasy_app/main.py'
+easypeasy-py = 'python src/easypeasy_app/main.py'
+easypeasy-qml = 'qml -I ../EasyApp/src/ -I src/easypeasy_app/ src/easypeasy_app/main.qml'

@@ -62,6 +62,7 @@ dev = [
   'mkdocstrings-python',                                              # MkDocs: Python docstring support
   'pyyaml',                                                           # YAML parser
   'EasyApp @ git+https://github.com/easyscience/EasyApp.git@develop', # The EasyScience application framework
+  'pyinstaller',                                                      # Create standalone executables
 ]
 
 [project.urls]
