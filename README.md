@@ -15,7 +15,6 @@ against experimental data.
 
 <!-- HOME REPOSITORY SECTION -->
 
-
 **EasyPeasy** is available both as a Python library and as a
 cross-platform desktop application.
 
@@ -41,5 +40,3 @@ library, please see the corresponding
 - 🧑‍💻 [Source Code](https://github.com/easyscience/peasy-app)
 - ⚖️
   [License](https://raw.githubusercontent.com/easyscience/peasy-app/refs/heads/master/LICENSE)
-
-
