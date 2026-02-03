@@ -17,11 +17,15 @@ EaComponents.ContentPage {
 
     mainView: EaComponents.MainContent {
         tabs: [
-            EaElements.TabButton { text: qsTr('Chart') }
+            EaElements.TabButton { text: qsTr('EaElements.GraphsView') },
+            EaElements.TabButton { text: qsTr('EaElements.TextArea (PlainText)') },
+            EaElements.TabButton { text: qsTr('EaElements.TextArea (RichText)') }
         ]
 
         items: [
-            Loader { source: 'MainArea/Chart.qml' }
+            Loader { source: 'MainArea/GraphsView.qml' },
+            Loader { source: 'MainArea/TextAreaPlain.qml' },
+            Loader { source: 'MainArea/TextAreaRich.qml' }
         ]
     }
 

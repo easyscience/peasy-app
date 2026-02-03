@@ -3,12 +3,14 @@
 // © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
 
 import QtQuick
-import QtGraphs
+import QtQuick.Controls
 
+import EasyApp.Gui.Globals as EaGlobals
 import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Components as EaComponents
+import EasyApp.Gui.Logic as EaLogic
 
 import Gui.Globals as Globals
 
-
-Rectangle {}
+EaElements.GroupColumn {}
