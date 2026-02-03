@@ -15,16 +15,4 @@ import Gui.Globals as Globals
 
 EaElements.GroupColumn {
 
-    EaElements.Label {
-        text: "EaElements.Label"
-    }
-
-    EaElements.TextInput {
-        text: 'EaElements.TextInput'
-    }
-
-    EaElements.TextField {
-        text: 'EaElements.TextField'
-    }
-
 }

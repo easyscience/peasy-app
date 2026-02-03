@@ -15,29 +15,4 @@ import Gui.Globals as Globals
 
 EaElements.GroupColumn {
 
-    EaElements.ComboBox {
-         model: ["EaElements.ComboBox 1", "EaElements.ComboBox 2", "EaElements.ComboBox 3"]
-    }
-
-    Column {
-        EaElements.RadioButton {
-            checked: true
-            text: qsTr("EaElements.RadioButton 1")
-        }
-        EaElements.RadioButton {
-            text: qsTr("EaElements.RadioButton 2")
-        }
-    }
-
-    Column {
-        spacing: 10
-        EaElements.CheckBox {
-            checked: true
-            text: qsTr("EaElements.CheckBox 1")
-        }
-        EaElements.CheckBox {
-            text: qsTr("EaElements.CheckBox 2")
-        }
-    }
-
 }

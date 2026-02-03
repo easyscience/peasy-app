@@ -13,4 +13,6 @@ import EasyApp.Gui.Logic as EaLogic
 
 import Gui.Globals as Globals
 
-EaElements.GroupColumn {}
+EaElements.GroupColumn {
+
+}

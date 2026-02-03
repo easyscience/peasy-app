@@ -15,16 +15,4 @@ import Gui.Globals as Globals
 
 EaElements.GroupColumn {
 
-
-    EaElements.SideBarButton {
-        fontIcon: 'plus-circle'
-        text: 'EaElements.SideBarButton'
-    }
-
-    EaElements.Slider {
-        from: 1
-        value: 25
-        to: 100
-    }
-
 }

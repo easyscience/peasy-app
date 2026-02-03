@@ -14,29 +14,28 @@ import Gui.Globals as Globals
 EaComponents.SideBarColumn {
 
     EaElements.GroupBox {
-        title: qsTr('Group 1: Empty')
+        title: qsTr('Group 1')
         icon: 'rocket'
 
         Loader { source: 'Groups/Group1.qml' }
     }
 
     EaElements.GroupBox {
-        title: qsTr('Group 2: Label, TextInput, TextField')
+        title: qsTr('Group 2')
         icon: 'rocket'
-        collapsed: false
 
         Loader { source: 'Groups/Group2.qml' }
     }
 
     EaElements.GroupBox {
-        title: qsTr('Group 3: ComboBox, RadioButton, CheckBox')
+        title: qsTr('Group 3')
         icon: 'rocket'
 
         Loader { source: 'Groups/Group3.qml' }
     }
 
     EaElements.GroupBox {
-        title: qsTr('Group 4: SidebarButton, Slider')
+        title: qsTr('Group 4')
         icon: 'rocket'
 
         Loader { source: 'Groups/Group4.qml' }
