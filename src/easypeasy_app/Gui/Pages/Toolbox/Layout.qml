@@ -17,12 +17,14 @@ EaComponents.ContentPage {
 
     mainView: EaComponents.MainContent {
         tabs: [
+            EaElements.TabButton { text: qsTr('Image') },
             EaElements.TabButton { text: qsTr('EaElements.GraphsView') },
-            EaElements.TabButton { text: qsTr('EaElements.TextArea (PlainText)') },
-            EaElements.TabButton { text: qsTr('EaElements.TextArea (RichText)') }
+            EaElements.TabButton { text: qsTr('EaElements.TextArea (Plain)') },
+            EaElements.TabButton { text: qsTr('EaElements.TextArea (Rich)') }
         ]
 
         items: [
+            Loader { source: 'MainArea/Image.qml' },
             Loader { source: 'MainArea/GraphsView.qml' },
             Loader { source: 'MainArea/TextAreaPlain.qml' },
             Loader { source: 'MainArea/TextAreaRich.qml' }
