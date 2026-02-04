@@ -1,3 +1,0 @@
-module Logic
-
-singleton MockBackend MockBackend.qml
