@@ -27,6 +27,8 @@ auto-completion, and more unique feature related to the QML code.
     - [x] Desktop (**_macOS_**) or MSVC 2019 64-bit (**_Windows_**)
       - [ ] Additional Libraries
         - [x] Qt Charts
+        - [x] Qt Graphs
+        - [x] Qt Quick 3D
         - [x] Qt Shader Tools
   - [ ] Developer and Designer Tools
     - [x] Qt Creator x.y.z
