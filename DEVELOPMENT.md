@@ -128,8 +128,8 @@ NewPage/
     └── Basic/                    # Basic controls sidebar tab
         ├── Layout.qml            # Sidebar layout with group boxes
         └── Groups/               # Folder for individual group contents
-            ├── Group1.qml        # First collapsible group content
-            └── Group2.qml        # Second collapsible group content
+            ├── Group1.qml        # Content for the first collapsible group
+            └── Group2.qml        # Content for the second collapsible group (optional)
 ```
 
 ---
@@ -143,10 +143,6 @@ bar that users will click to navigate to your new page.
 
 **Location in file:** Find the `appBarCentralTabs.contentData` array
 (around line 46) and add a new button entry.
-
-**Where to insert:** Add your new button BEFORE the "Toolbox page"
-button (Toolbox should typically remain the last item), or wherever it
-fits in your workflow sequence.
 
 **Code to add:**
 
@@ -170,7 +166,7 @@ fits in your workflow sequence.
 | Property                | Description                                                                                                                         | Example Values                              |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
 | `id`                    | Unique identifier for this button. Use camelCase with "Button" suffix.                                                              | `newPageButton`, `analysisButton`           |
-| `enabled`               | Whether the button is clickable. Set to `false` if user must complete previous steps first.                                         | `true` or `false`                           |
+| `enabled`               | Whether the button is enabled right after creation                                                                                  | `true` or `false`                           |
 | `fontIcon`              | FontAwesome icon name (without 'fa-' prefix). See [fontawesome.com/icons](https://fontawesome.com/icons) for options.               | `'star'`, `'chart-line'`, `'cog'`, `'file'` |
 | `text`                  | The label displayed on the button. Use `qsTr()` for translation support.                                                            | `qsTr('New Page')`                          |
 | `ToolTip.text`          | Tooltip shown when user hovers over the button.                                                                                     | `qsTr('Description here')`                  |
@@ -272,10 +268,6 @@ including:
 **Complete example code:**
 
 ```qml
-// SPDX-FileCopyrightText: 2024 EasyApp contributors
-// SPDX-License-Identifier: BSD-3-Clause
-// © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
-
 import QtQuick
 import QtQuick.Controls
 
@@ -374,10 +366,6 @@ the main view area.
 **Example: A simple placeholder (Tab1.qml):**
 
 ```qml
-// SPDX-FileCopyrightText: 2024 EasyApp contributors
-// SPDX-License-Identifier: BSD-3-Clause
-// © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
-
 import QtQuick
 
 import EasyApp.Gui.Style as EaStyle
