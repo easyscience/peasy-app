@@ -367,98 +367,19 @@ the main view area.
 
 ```qml
 import QtQuick
+import QtQuick.Controls
 
-import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Components as EaComponents
 
-import Gui.Globals as Globals
-
-
-Rectangle {
-    anchors.fill: parent
-    color: EaStyle.Colors.chartBackground
-
-    Text {
-        anchors.centerIn: parent
-        text: "Tab 1 Content - Replace with your actual content"
-        color: EaStyle.Colors.themeForeground
-        font.pixelSize: EaStyle.Sizes.fontPixelSize * 2
-    }
-}
-```
-
-**Example: A chart using QtGraphs (GraphsView.qml):**
-
-```qml
-// SPDX-FileCopyrightText: 2024 EasyApp contributors
-// SPDX-License-Identifier: BSD-3-Clause
-// © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
-
-import QtQuick
-import QtGraphs
-
-import EasyApp.Gui.Style as EaStyle
-import EasyApp.Gui.Elements as EaElements
-
-import Gui.Globals as Globals
-
-
-GraphsView {
-    anchors.fill: parent
-
-    // Margins around the chart
-    marginTop: EaStyle.Sizes.fontPixelSize * 2
-    marginBottom: EaStyle.Sizes.fontPixelSize * 2
-    marginLeft: EaStyle.Sizes.fontPixelSize
-    marginRight: EaStyle.Sizes.fontPixelSize * 2
-
-    // Enable zoom with mouse selection
-    zoomAreaEnabled: true
-
-    // Chart theme (colors, fonts, grid)
-    theme: GraphsTheme {
-        backgroundColor: EaStyle.Colors.chartBackground
-        plotAreaBackgroundColor: EaStyle.Colors.chartBackground
-
-        axisX.mainColor: EaStyle.Colors.chartGridLine
-        axisX.mainWidth: 0
-
-        axisY.mainColor: EaStyle.Colors.chartGridLine
-        axisY.mainWidth: 0
-
-        gridVisible: true
-        grid.mainWidth: 1
-        grid.subWidth: 0
-        grid.mainColor: EaStyle.Colors.chartGridLine
-        grid.subColor: EaStyle.Colors.chartMinorGridLine
-
-        labelFont.family: EaStyle.Fonts.fontFamily
-        labelFont.pixelSize: EaStyle.Sizes.fontPixelSize
-        labelTextColor: EaStyle.Colors.chartLabels
-    }
-
-    // X-axis configuration
-    axisX: ValueAxis {
-        titleText: 'X Axis Label'
-        min: 0
-        max: 100
-    }
-
-    // Y-axis configuration
-    axisY: ValueAxis {
-        titleText: 'Y Axis Label'
-        min: -2
-        max: 2
-    }
-
-    // Data series (line chart)
-    LineSeries {
-        color: 'red'
-
-        XYPoint { x: 0; y: -1 }
-        XYPoint { x: 50; y: 1.5 }
-        XYPoint { x: 100; y: -0.5 }
-    }
+EaElements.TextArea {
+    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+culpa qui officia deserunt mollit anim id est laborum.'
 }
 ```
 
@@ -475,35 +396,26 @@ which collapsible group boxes appear and in what order.
 **Complete example code:**
 
 ```qml
-// SPDX-FileCopyrightText: 2024 EasyApp contributors
-// SPDX-License-Identifier: BSD-3-Clause
-// © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
-
 import QtQuick
 import QtQuick.Controls
 
 import EasyApp.Gui.Elements as EaElements
 import EasyApp.Gui.Components as EaComponents
 
-import Gui.Globals as Globals
-
-
 EaComponents.SideBarColumn {
 
-    // First group box (expanded by default)
+    // First group box
     EaElements.GroupBox {
         title: qsTr('Group 1 Title')
         icon: 'rocket'
-        collapsed: false  // Set to true to start collapsed
 
         Loader { source: 'Groups/Group1.qml' }
     }
 
-    // Second group box (collapsed by default)
+    // Second group box
     EaElements.GroupBox {
         title: qsTr('Group 2 Title')
         icon: 'cog'
-        collapsed: true
 
         Loader { source: 'Groups/Group2.qml' }
     }
@@ -535,71 +447,15 @@ collapsible group box.
 **Example: Empty group placeholder (Group1.qml):**
 
 ```qml
-// SPDX-FileCopyrightText: 2024 EasyApp contributors
-// SPDX-License-Identifier: BSD-3-Clause
-// © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
-
 import QtQuick
 import QtQuick.Controls
 
-import EasyApp.Gui.Globals as EaGlobals
-import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Elements as EaElements
 import EasyApp.Gui.Components as EaComponents
-import EasyApp.Gui.Logic as EaLogic
-
-import Gui.Globals as Globals
 
 EaElements.GroupColumn {
     // Add your controls here
     // See the Toolbox page for examples of available widgets
-}
-```
-
-**Example: Group with buttons (GetStarted.qml style):**
-
-```qml
-// SPDX-FileCopyrightText: 2024 EasyApp contributors
-// SPDX-License-Identifier: BSD-3-Clause
-// © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
-
-import QtQuick
-import QtQuick.Controls
-
-import EasyApp.Gui.Globals as EaGlobals
-import EasyApp.Gui.Style as EaStyle
-import EasyApp.Gui.Elements as EaElements
-import EasyApp.Gui.Components as EaComponents
-import EasyApp.Gui.Logic as EaLogic
-
-import Gui.Globals as Globals
-
-
-Grid {
-    columns: 2
-    spacing: EaStyle.Sizes.fontPixelSize
-
-    // Button 1
-    EaElements.SideBarButton {
-        fontIcon: 'plus-circle'
-        text: qsTr('Action 1')
-
-        onClicked: {
-            console.debug(`Clicking '${text}' button ::: ${this}`)
-            // Add your action here
-        }
-    }
-
-    // Button 2
-    EaElements.SideBarButton {
-        fontIcon: 'upload'
-        text: qsTr('Action 2')
-
-        onClicked: {
-            console.debug(`Clicking '${text}' button ::: ${this}`)
-            // Add your action here
-        }
-    }
 }
 ```
 
@@ -612,16 +468,7 @@ After creating all the files, verify that your new page works correctly:
 1. **Run the application** using Qt Creator (open
    `src/easypeasy_app.qmlproject` and click Run)
 
-2. **Check for errors** in the Qt Creator console. Common issues
-   include:
-   - Typos in file paths
-   - Missing imports
-   - Mismatched array indices (buttons vs. content loaders)
-
-3. **Test the workflow:**
-   - Can you see your new button in the application bar?
-   - Does clicking the button show your page?
-   - Does the "Continue" button work and navigate to the next page?
+2. **Check for errors** in the Qt Creator console.
 
 ### Tips and common patterns
 
@@ -667,10 +514,3 @@ sideBar: EaComponents.SideBar {
     // ... rest of sidebar configuration
 }
 ```
-
-#### Connecting to Python backend
-
-To connect your QML page to Python backend logic, use the
-`Globals.BackendWrapper` which provides access to the Python backend.
-See the existing pages for examples of how to call backend methods and
-bind to backend properties.
