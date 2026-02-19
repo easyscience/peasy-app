@@ -17,9 +17,9 @@ QtObject {
         'version': '0.1.0',
         'icon': Qt.resolvedUrl('../Resources/Logos/App.png'),
         'date': new Date().toISOString().slice(0,10),
-        'developerYearsFrom': '2021',
+        'developerYearsFrom': '2025',
         'developerYearsTo': '2026',
-        'description': '**EasyPeasy** is a scientific software for performing imaginary calculations based on a theoretical model and refining its parameters against experimental data',
+        'description': '**EasyPeasy** is a scientific software a software for performing imaginary calculations based on a imaginary model and refining its parameters against imaginary data',
         'developerIcons': [
             {
                 'url': 'https://ess.eu',

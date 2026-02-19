@@ -9,7 +9,7 @@ import re
 from pathlib import Path
 
 COPYRIGHT_TEXT = (
-    '# SPDX-FileCopyrightText: 2021-2026 EasyPeasy contributors <https://github.com/easyscience>'
+    '# SPDX-FileCopyrightText: 2025-2026 EasyPeasy contributors <https://github.com/easyscience>'
 )
 LICENSE_TEXT = '# SPDX-License-Identifier: BSD-3-Clause'
 
