@@ -9,13 +9,12 @@
   </picture>
 </p>
 
-**EasyPeasy** is a scientific software for performing imaginary
-calculations based on a theoretical model and refining its parameters
-against experimental data.
+**EasyPeasy** is a software for performing imaginary calculations based
+on a imaginary model and refining its parameters against imaginary data.
 
 <!-- HOME REPOSITORY SECTION -->
 
-**EasyPeasy** is available both as a Python library and as a
+**EasyPeasy** is developed both as a Python library and as a
 cross-platform desktop application.
 
 Here, we focus on the graphical user interface (GUI). For the Python
