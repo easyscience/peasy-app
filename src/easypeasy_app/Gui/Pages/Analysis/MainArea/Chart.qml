@@ -59,7 +59,7 @@ Rectangle {
             //labelsVisible: true
             //subTickCount: 1
 
-            labelDelegate: TextEdit {
+            labelDelegate: EaElements.Label {
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 bottomPadding: EaStyle.Sizes.fontPixelSize
@@ -81,7 +81,7 @@ Rectangle {
             //labelsVisible: true
             //subTickCount: 1
 
-            labelDelegate: TextEdit {
+            labelDelegate: EaElements.Label {
                 horizontalAlignment: TextInput.AlignRight
                 verticalAlignment: Text.AlignVCenter
                 rightPadding: -EaStyle.Sizes.fontPixelSize
