@@ -42,4 +42,11 @@ EaComponents.SideBarColumn {
         Loader { source: 'Groups/Group4.qml' }
     }
 
+    EaElements.GroupBox {
+        title: qsTr('Group 5: TableView')
+        icon: 'rocket'
+
+        Loader { source: 'Groups/Group5.qml' }
+    }
+
 }
