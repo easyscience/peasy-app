@@ -17,6 +17,7 @@ EaElements.GroupColumn {
 
     // table
     EaComponents.TableView {
+        id: tableWithHeader
 
         maxRowCountShow: 4
 
@@ -118,4 +119,100 @@ EaElements.GroupColumn {
     }
     // table
 
+
+    // table
+    EaComponents.TableView {
+        id: tableWithoutHeader
+
+        maxRowCountShow: 3
+        showHeader: false
+
+        // model
+        model: tableWithHeader.model
+        // model
+
+        // header delegate
+        header: EaComponents.TableViewHeader {
+
+            // No.
+            EaComponents.TableViewLabel {
+                width: EaStyle.Sizes.fontPixelSize * 2.5
+            }
+
+            // Name
+            EaComponents.TableViewLabel {
+                width: EaStyle.Sizes.fontPixelSize * 4.5
+                horizontalAlignment: Text.AlignLeft
+                text: qsTr("name")
+            }
+
+            // Age
+            EaComponents.TableViewLabel {
+                width: EaStyle.Sizes.fontPixelSize * 4.5
+                horizontalAlignment: Text.AlignHCenter
+                color: EaStyle.Colors.themeForegroundMinor
+                text: qsTr("age")
+            }
+
+            // Address
+             EaComponents.TableViewLabel {
+                flexibleWidth: true
+                horizontalAlignment: Text.AlignLeft
+                color: EaStyle.Colors.themeForegroundMinor
+                text: qsTr("address")
+            }
+
+            // Remove button
+            EaComponents.TableViewLabel {
+                width: EaStyle.Sizes.tableRowHeight
+            }
+        }
+        // header delegate
+
+        // row delegate
+        delegate: EaComponents.TableViewDelegate {
+
+            // No.
+            EaComponents.TableViewLabel {
+                text: index + 1
+                color: EaStyle.Colors.themeForegroundMinor
+            }
+
+            // Name
+            EaComponents.TableViewTextInput {
+                text: model.name
+
+                onAccepted: {
+                    model.name = text
+                    console.log("Name updated to: " + text)
+                }
+            }
+
+            // Age
+            EaComponents.TableViewLabel {
+                text: model.age
+                color: EaStyle.Colors.themeForegroundMinor
+            }
+
+            // Address
+             EaComponents.TableViewLabel {
+                text: model.address
+                color: EaStyle.Colors.themeForegroundMinor
+            }
+
+            // Remove button
+            EaComponents.TableViewButton {
+                fontIcon: "minus-circle"
+                ToolTip.text: qsTr("Remove this item")
+
+                onClicked: {
+                    console.log("This will remove item with index: " + index)
+                }
+            }
+
+        }
+        // row delegate
+
+    }
+    // table
 }
