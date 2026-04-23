@@ -27,4 +27,14 @@ EaElements.GroupColumn {
         text: 'EaElements.TextField'
     }
 
+    EaElements.TextInput {
+        warned: true
+        text: 'EaElements.TextInput (warned)'
+    }
+
+    EaElements.TextField {
+        warned: true
+        text: 'EaElements.TextField (warned)'
+    }
+
 }
