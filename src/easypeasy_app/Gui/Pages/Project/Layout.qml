@@ -39,7 +39,7 @@ EaComponents.ContentPage {
         items: [
             Loader { source: 'Sidebar/Basic/Layout.qml' },
             Loader { source: 'Sidebar/Extra/Layout.qml' },
-            Loader { source: 'Sidebar/Extra/Text.qml' }
+            Loader { source: 'Sidebar/Text/Layout.qml' }
         ]
 
         continueButton.text: Globals.BackendWrapper.projectCreated ?
