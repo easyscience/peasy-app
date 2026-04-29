@@ -4,21 +4,19 @@
 from pathlib import Path
 import sys
 
-import EasyApp
-
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine, qmlRegisterSingletonType
 from PySide6.QtCore import qInstallMessageHandler
 
-# It is usually assumed that the EasyApp package is already installed in the desired python environment.
-# If this is not the case, and if the example is run from the EasyApp repository, one need to add the path to the
-# EasyApp source code.
-CURRENT_DIR = Path(__file__).parent  # path to qml components of the current project
-EASYAPP_DIR = Path(EasyApp.__path__[0]).resolve().parent  # path the installed easyapp module
-
-from EasyApp.Logic.Logging import console
+import EasyApplication
+from EasyApplication.Logic.Logging import console
 
 from Backends.real_backend import Backend
+
+CURRENT_DIR = Path(__file__).parent  # path to qml components of the current project
+EASYAPPLICATION_DIR = (
+    Path(EasyApplication.__path__[0]).resolve().parent
+)  # path the installed easyapp module
 
 
 if __name__ == '__main__':
@@ -38,7 +36,7 @@ if __name__ == '__main__':
     console.debug(f'QML application engine created {engine}')
 
     engine.addImportPath(CURRENT_DIR)
-    engine.addImportPath(EASYAPP_DIR)
+    engine.addImportPath(EASYAPPLICATION_DIR)
     console.debug('Paths added where QML searches for components')
 
     engine.load(CURRENT_DIR / 'main.qml')
