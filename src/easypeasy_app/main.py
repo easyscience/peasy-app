@@ -13,10 +13,11 @@ from EasyApplication.Logic.Logging import console
 
 from Backends.real_backend import Backend
 
-CURRENT_DIR = Path(__file__).parent  # path to qml components of the current project
-EASYAPPLICATION_DIR = (
-    Path(EasyApplication.__path__[0]).resolve().parent
-)  # path the installed easyapp module
+# path to qml components of the current project
+CURRENT_DIR = Path(__file__).parent
+
+# path to the installed easyapplication module
+EA_DIR = Path(EasyApplication.__path__[0]).resolve().parent
 
 
 if __name__ == '__main__':
@@ -36,7 +37,7 @@ if __name__ == '__main__':
     console.debug(f'QML application engine created {engine}')
 
     engine.addImportPath(CURRENT_DIR)
-    engine.addImportPath(EASYAPPLICATION_DIR)
+    engine.addImportPath(EA_DIR)
     console.debug('Paths added where QML searches for components')
 
     engine.load(CURRENT_DIR / 'main.qml')
