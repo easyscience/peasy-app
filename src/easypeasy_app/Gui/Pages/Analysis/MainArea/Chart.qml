@@ -5,8 +5,8 @@
 import QtQuick
 import QtGraphs
 
-import EasyApp.Gui.Style as EaStyle
-import EasyApp.Gui.Elements as EaElements
+import EasyApplication.Gui.Style as EaStyle
+import EasyApplication.Gui.Elements as EaElements
 
 import Gui.Globals as Globals
 
@@ -59,7 +59,7 @@ Rectangle {
             //labelsVisible: true
             //subTickCount: 1
 
-            labelDelegate: TextEdit {
+            labelDelegate: EaElements.Label {
                 horizontalAlignment: TextInput.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 bottomPadding: EaStyle.Sizes.fontPixelSize
@@ -81,7 +81,7 @@ Rectangle {
             //labelsVisible: true
             //subTickCount: 1
 
-            labelDelegate: TextEdit {
+            labelDelegate: EaElements.Label {
                 horizontalAlignment: TextInput.AlignRight
                 verticalAlignment: Text.AlignVCenter
                 rightPadding: -EaStyle.Sizes.fontPixelSize

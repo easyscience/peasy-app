@@ -5,8 +5,8 @@
 import QtQuick
 import QtQuick.Controls
 
-import EasyApp.Gui.Elements as EaElements
-import EasyApp.Gui.Components as EaComponents
+import EasyApplication.Gui.Elements as EaElements
+import EasyApplication.Gui.Components as EaComponents
 
 import Gui.Globals as Globals
 
@@ -40,6 +40,13 @@ EaComponents.SideBarColumn {
         icon: 'rocket'
 
         Loader { source: 'Groups/Group4.qml' }
+    }
+
+    EaElements.GroupBox {
+        title: qsTr('Group 5: TableView')
+        icon: 'rocket'
+
+        Loader { source: 'Groups/Group5.qml' }
     }
 
 }
